@@ -1,3 +1,5 @@
+package sample;
+
 public class Card {
     enum Seed {
         HEARTS, //cuori
@@ -17,7 +19,6 @@ public class Card {
     public Seed getSeed() {
         return seed;
     }
-
     public int getNumber() {
         return number;
     }

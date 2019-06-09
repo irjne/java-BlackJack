@@ -161,7 +161,7 @@ public class Game {
     public static void main(String[] args) {
         Game game = new Game();
         Player player = new Player (4000);
-        int choice;
+        int choice, end = 0;
 
         game.mixCards(5);
         game.betAndGetCards(player, 100);
@@ -169,7 +169,7 @@ public class Game {
         Scanner scanIn = new Scanner(System.in);
         System.out.println(player);
 
-        if (game.getScore(player) < 21 && game.bustOrBlackJack(player) == 2) {
+        if (end != 1 && game.getScore(player) < 21 && game.bustOrBlackJack(player) == 2) {
             do {
                 System.out.println("Stand 1, Hit 2: ");
                 choice = scanIn.nextInt();
@@ -187,6 +187,7 @@ public class Game {
                         if (game.getScore(player) < 21) game.hit(player);
                         else {
                             System.out.println("BUST.");
+                            end = 1;
                             return;
                         }
 
@@ -196,7 +197,7 @@ public class Game {
                     break;
                     default: System.out.println("Error: invalid choice.");
                 }
-            } while (choice!=1);
+            } while (choice!=1 && end != 1);
         }
         else if (game.bustOrBlackJack(player) == 1 && game.getScore(game.getDealer()) < 21) {
             player.setCredit(player.getCredit()+player.getBet()+(player.getBet()*1.5));

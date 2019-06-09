@@ -36,7 +36,7 @@
                </Label>
                <ImageView fx:id="cardSeed" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -50,7 +50,7 @@
                </Label>
                <ImageView fx:id="cardSeed1" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -64,7 +64,7 @@
                </Label>
                <ImageView fx:id="cardSeed2" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -78,7 +78,7 @@
                </Label>
                <ImageView fx:id="cardSeed11" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -92,7 +92,7 @@
                </Label>
                <ImageView fx:id="cardSeed111" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -106,7 +106,7 @@
                </Label>
                <ImageView fx:id="cardSeed1111" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -120,7 +120,7 @@
                </Label>
                <ImageView fx:id="cardSeed3" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -134,7 +134,7 @@
                </Label>
                <ImageView fx:id="cardSeed12" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -148,7 +148,7 @@
                </Label>
                <ImageView fx:id="cardSeed21" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -162,7 +162,7 @@
                </Label>
                <ImageView fx:id="cardSeed112" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -176,7 +176,7 @@
                </Label>
                <ImageView fx:id="cardSeed1112" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>
@@ -190,7 +190,7 @@
                </Label>
                <ImageView fx:id="cardSeed11111" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../assets/spades.png" />
+                     <Image url="@../assets/seedSpades.png" />
                   </image>
                </ImageView>
             </children>

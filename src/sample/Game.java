@@ -2,6 +2,7 @@ package sample;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
     private Player dealer;
@@ -19,6 +20,10 @@ public class Game {
         }
     }
 
+    public Player getDealer() {
+        return dealer;
+    }
+
     //mescolamento delle carte: estraiamo un oggetto di indice random e lo posizioniamo nell'indice "i" gestito dal ciclo for che scorre l'intero mazzo
     public void mixCards (int cicles) {
         for (int i=0; i<this.cards.size(); i++) {
@@ -33,71 +38,71 @@ public class Game {
         if (cicles>0) mixCards(cicles-1);
     }
 
-    @Override
-    public String toString() {
-        String result = "";
-        for (Card card : this.cards) {
-             result += card.getNumber() + " " + card.getSeed() + "\n";
-        }
-        return result;
-    }
-
     //assegnazione carte
-    public void getCard (Player player) {
-        //controlla se il mazzo è finito
-        player.getPlayerCards().add(this.cards.get(0));
-        this.cards.remove(0);
+    public boolean getCard (Player player) {
+        if (this.cards.size() > 0 ) {
+            player.getPlayerCards().add(this.cards.get(0));
+            this.cards.remove(0);
+            return true;
+        }
+        return false;
     }
 
     //puntata e assegnazione delle carte
     public boolean betAndGetCards (Player player, double bet) {
         if (bet > player.getCredit()) return false;
 
+        player.setBet(bet);
         player.setCredit(player.getCredit()-bet);
         for (int i=0; i<2; i++) {
             getCard(player);
             getCard(dealer);
         }
 
-        checkWinner(player, bet);
         return true;
     }
 
+    public int getScore (Player player) {
+        int score = 0;
+
+        for (Card card : player.getPlayerCards()) {
+            if (card.getNumber()> 10) score+=10;
+            else score+=card.getNumber();
+        }
+        return score;
+    }
+
     public int dealerScore () {
-        int value = 0;
+        int score = getScore(dealer);
         boolean ace = false;
-        boolean jack = false;
+        boolean jack = false; //controlla se l'asso può valere 11
+
+        while (score < 17) {
+            getCard(dealer);
+            score = getScore(dealer);
+        }
 
         if (dealer.getPlayerCards().size()==2) {
             for (Card card : dealer.getPlayerCards()) {
                 if (card.getNumber() == 1) ace = true;
                 if (card.getNumber() > 5 ) jack = true;
-
-                value+=card.getNumber();
             }
 
-
-            if (ace && jack) return value+10;
-            else return value;
+            if (ace && jack) return score+10;
+            else return score;
         }
 
-        for (Card card : dealer.getPlayerCards()) {
-            value+=card.getNumber();
-        }
-
-        if (value < 17) {
-            getCard(dealer);
-            dealerScore();
-        }
-
-        return value;
+        return score;
     }
 
-    public int checkWinner (Player player, double bet) {
-        int value=0, dealerScore = 0;
+    public int bustOrBlackJack (Player player) {
+        int score=getScore(player);
         boolean ace = false, figure = false;
 
-        //caso black jack
+        //bust
+        if (score > 21) return 0;
+
+        //black jack
         if (player.getPlayerCards().size()==2) {
             for (int i=0; i<player.getPlayerCards().size(); i++ ) {
                 if (player.getPlayerCards().get(i).getNumber() == 1) ace = true;
@@ -105,38 +110,103 @@ public class Game {
             }
 
             if (ace && figure) {
-                player.setCredit(player.getCredit()+bet+(bet*1.5));
                 return 1;
             }
         }
 
-        for (Card card : player.getPlayerCards()) {
-            value+=card.getNumber();
+        return 2;
+    }
+
+    public void stand (Player player) {
+        int score=getScore(player), dealerScore = dealerScore();
+
+        if (score == dealerScore) {
+            player.setCredit(player.getCredit()+player.getBet());
+            System.out.println("DRAW.");
         }
 
-        dealerScore = dealerScore();
-
-        //vittoria
-        if (value==21) {
-            if (dealerScore == 21) player.setCredit(player.getCredit()+bet);
-            else player.setCredit(player.getCredit()+bet*2);
-            return 2;
+        else if ((score==21 && dealerScore < 21) || (score < 22 && score > dealerScore)) {
+            player.setCredit(player.getCredit()+player.getBet()*2);
+            System.out.println("WIN.");
         }
-        //perdita
-        if (value > 21 || dealerScore < 22 && dealerScore > value) return 0;
 
-        //stand o hint, da implementare
-        return 3;
+        else if (score < 22 && score < dealerScore) {
+            System.out.println("LOSE.");
+        }
+    }
+
+    public boolean hit (Player player) {
+        if (bustOrBlackJack(player) == 2) return getCard(player);
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        String result =  "Dealer [";
+
+        for (Card card : dealer.getPlayerCards()) {
+            result+= card.getNumber() + " ";
+        }
+
+        return result + "]";
+
+        /*String result = "";
+        for (Card card : this.cards) {
+            result += card.getNumber() + " " + card.getSeed() + "\n";
+        }
+        return result;*/
     }
 
     //testing
     public static void main(String[] args) {
         Game game = new Game();
-        /*System.out.println(game);
-        System.out.println();
+        Player player = new Player (4000);
+        int choice;
+
         game.mixCards(5);
-        System.out.println(game);*/
+        game.betAndGetCards(player, 100);
 
+        Scanner scanIn = new Scanner(System.in);
+        System.out.println(player);
 
+        if (game.getScore(player) < 21 && game.bustOrBlackJack(player) == 2) {
+            do {
+                System.out.println("Stand 1, Hit 2: ");
+                choice = scanIn.nextInt();
+
+                switch (choice) {
+                    case 1: {
+                        System.out.println(player);
+                        System.out.println(game);
+                        game.stand(player);
+                        System.out.println(player);
+                        System.out.println(game);
+                    }
+                    break;
+                    case 2: {
+                        if (game.getScore(player) < 21) game.hit(player);
+                        else {
+                            System.out.println("BUST.");
+                            return;
+                        }
+
+                        System.out.println(player);
+                        System.out.println(game);
+                    }
+                    break;
+                    default: System.out.println("Error: invalid choice.");
+                }
+            } while (choice!=1);
+        }
+        else if (game.bustOrBlackJack(player) == 1 && game.getScore(game.getDealer()) < 21) {
+            player.setCredit(player.getCredit()+player.getBet()+(player.getBet()*1.5));
+            System.out.println("BLACK JACK.");
+            return;
+        }
+        else if (game.bustOrBlackJack(player) == 1 && game.getScore(game.getDealer()) == 21) {
+            player.setCredit(player.getCredit()+player.getBet());
+            System.out.println("DRAW.");
+            return;
+        }
     }
 }

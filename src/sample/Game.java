@@ -64,11 +64,23 @@ public class Game {
 
     public int getScore (Player player) {
         int score = 0;
+        boolean ace = false;
+        boolean figure = false;
 
         for (Card card : player.getPlayerCards()) {
-            if (card.getNumber()> 10) score+=10;
+            if (card.getNumber() > 10) {
+                score+=10;
+                figure = true;
+            }
+            else if (card.getNumber() == 1) {
+                ace = true;
+                score+=1;
+            }
             else score+=card.getNumber();
         }
+
+        if (player.getPlayerCards().size() == 2 && ace && (figure || score > 5)) score+=10;
+
         return score;
     }
 
@@ -118,21 +130,21 @@ public class Game {
     }
 
     public int stand (Player player) {
-        int score = getScore(player), dealerScore = dealerScore();
+        int score = getScore(player), dealerScore = /*dealerScore()*/ getScore(dealer);
 
-        if (score == dealerScore && score < 22 && dealerScore < 22) {
+        if (score == dealerScore && score < 22) {
             player.setCredit(player.getCredit()+player.getBet());
             System.out.println("DRAW.");
             return 0;
         }
 
-        else if ((score==21 && dealerScore < 21) || (score < 22 && score > dealerScore) || dealerScore > 21) {
+        else if ((score < 22 && score > dealerScore) || dealerScore > 21) {
             player.setCredit(player.getCredit()+player.getBet()*2);
             System.out.println("WIN.");
             return 1;
         }
 
-        else if (score < 22 && dealerScore < 22 && score < dealerScore) {
+        else if ((score < 22 && score < dealerScore) || dealerScore == 21) {
             System.out.println("LOSE.");
             return 2;
         }
@@ -199,8 +211,6 @@ public class Game {
 
                 switch (choice) {
                     case 1: {
-                        System.out.println(player);
-                        System.out.println(game);
                         game.stand(player);
                         System.out.println(player);
                         System.out.println(game);

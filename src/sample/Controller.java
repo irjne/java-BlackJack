@@ -97,12 +97,13 @@ public class Controller {
 
     public void restart () {
         game = new Game ();
+        game.dealer = new Player();
         player = new Player(300);
 
         StringProperty valueZero = new SimpleStringProperty("0");
         StringProperty stringNull = new SimpleStringProperty();
 
-        credit.textProperty().bind(valueZero);
+        credit.textProperty().bind(new SimpleStringProperty(Double.toString(player.getCredit())));
         playerScore.textProperty().bind(valueZero);
         dealerScore.textProperty().bind(valueZero);
 
@@ -119,6 +120,8 @@ public class Controller {
         cardP4V.textProperty().bind(stringNull);
         cardP5V.textProperty().bind(stringNull);
         cardP6V.textProperty().bind(stringNull);
+
+        alert.textProperty().bind(stringNull);
 
         cardD1S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));
         cardD2S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));
@@ -142,30 +145,11 @@ public class Controller {
         credit.textProperty().bind(playerCredit);
     }
 
-    public int getScore (Player player) {
-        int counter = 0;
-        boolean ace = false, figure = true;
-
-        for (Card card : player.getPlayerCards()) {
-            if (card.getNumber() > 10) {
-                counter+=10;
-                figure = true;
-            }
-            else if (card.getNumber() == 1) ace = true;
-            else counter+=card.getNumber();
-        }
-
-        if (player.getPlayerCards().size() == 2 && ace && (figure || counter > 5)) counter+=11;
-        else if (ace) counter+=1;
-
-        return counter;
-    }
-
     public void refreshScore () {
-        StringProperty pScore = new SimpleStringProperty(Integer.toString(getScore(player)));
+        StringProperty pScore = new SimpleStringProperty(Integer.toString(game.getScore(player)));
         playerScore.textProperty().bind(pScore);
 
-        StringProperty dScore = new SimpleStringProperty(Integer.toString(getScore(game.dealer)));
+        StringProperty dScore = new SimpleStringProperty(Integer.toString(game.getScore(game.dealer)));
         dealerScore.textProperty().bind(dScore);
     }
 
@@ -250,7 +234,7 @@ public class Controller {
 
         for (int i=2; i<game.dealer.getPlayerCards().size(); i++) {
             int card = game.dealer.getPlayerCards().get(i).getNumber();
-            Card.Seed seed = player.getPlayerCards().get(i).getSeed();
+            Card.Seed seed = game.dealer.getPlayerCards().get(i).getSeed();
 
             cardValue = conversion(card);
 
@@ -270,7 +254,7 @@ public class Controller {
                 name = cardD6V;
                 seedName = cardD6S;
             }
-
+            
             seedName.setImage(setSeed(seed));
             name.textProperty().bind(cardValue);
         }
@@ -282,7 +266,6 @@ public class Controller {
         StringProperty cardValue;
 
         int position = player.getPlayerCards().size();
-        System.out.println(position);
         if (position == 3) {
             name = cardP3V;
             seedName = cardP3S;
@@ -322,6 +305,7 @@ public class Controller {
 
         int result = game.blackJackOrDraw(player);
         alert(result);
+        initialize();
     }
 
     @FXML
@@ -337,6 +321,7 @@ public class Controller {
 
         int result = game.blackJackOrDraw(player);
         alert(result);
+        initialize();
     }
 
     @FXML
@@ -352,6 +337,7 @@ public class Controller {
 
         int result = game.blackJackOrDraw(player);
         alert(result);
+        initialize();
     }
 
     @FXML
@@ -367,6 +353,7 @@ public class Controller {
 
         int result = game.blackJackOrDraw(player);
         alert(result);
+        initialize();
     }
 
     @FXML
@@ -384,6 +371,7 @@ public class Controller {
 
         int result = game.blackJackOrDraw(player);
         alert(result);
+        initialize();
     }
 
     @FXML
@@ -399,8 +387,14 @@ public class Controller {
 
     @FXML
     void stand() {
+        game.dealerScore();
         int result = game.stand(player);
-        dealerHitCards();
+
+        for (Card card : game.dealer.getPlayerCards()) {
+            System.out.println("Card: " + card.getNumber());
+        }
+
+        if (game.dealer.getPlayerCards().size() > 2) dealerHitCards();
 
         refreshScore();
 

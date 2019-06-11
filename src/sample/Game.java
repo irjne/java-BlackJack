@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private Player dealer;
+    public Player dealer;
     private ArrayList<Card> cards;
 
     public Game() {
@@ -117,27 +117,50 @@ public class Game {
         return 2;
     }
 
-    public void stand (Player player) {
-        int score=getScore(player), dealerScore = dealerScore();
+    public int stand (Player player) {
+        int score = getScore(player), dealerScore = dealerScore();
 
-        if (score == dealerScore) {
+        if (score == dealerScore && score < 22 && dealerScore < 22) {
             player.setCredit(player.getCredit()+player.getBet());
             System.out.println("DRAW.");
+            return 0;
         }
 
-        else if ((score==21 && dealerScore < 21) || (score < 22 && score > dealerScore)) {
+        else if ((score==21 && dealerScore < 21) || (score < 22 && score > dealerScore) || dealerScore > 21) {
             player.setCredit(player.getCredit()+player.getBet()*2);
             System.out.println("WIN.");
+            return 1;
         }
 
-        else if (score < 22 && score < dealerScore) {
+        else if (score < 22 && dealerScore < 22 && score < dealerScore) {
             System.out.println("LOSE.");
+            return 2;
         }
+        return -1;
     }
 
-    public boolean hit (Player player) {
-        if (bustOrBlackJack(player) == 2) return getCard(player);
-        return false;
+    public int hit (Player player) {
+        if (bustOrBlackJack(player) == 2) {
+            getCard(player);
+
+            if (bustOrBlackJack(player) == 0) return 3;
+        }
+        return -1;
+    }
+
+    public int blackJackOrDraw (Player player) {
+        if (bustOrBlackJack(player) == 1 && getScore(getDealer()) < 21) {
+            player.setCredit(player.getCredit()+player.getBet()+(player.getBet()*1.5));
+            System.out.println("BLACK JACK.");
+            return 4;
+        }
+
+        if (bustOrBlackJack(player) == 1 && getScore(getDealer()) == 21) {
+            player.setCredit(player.getCredit()+player.getBet());
+            System.out.println("DRAW.");
+            return 0;
+        }
+        return -1;
     }
 
     @Override
@@ -161,7 +184,7 @@ public class Game {
     public static void main(String[] args) {
         Game game = new Game();
         Player player = new Player (4000);
-        int choice, end = 0;
+        int choice = 0, end = 0;
 
         game.mixCards(5);
         game.betAndGetCards(player, 100);

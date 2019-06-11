@@ -5,15 +5,17 @@ Progetto a cura di *Daria Gilletti* (**@irjne**), *Claudio Landolfo* (**@clacchi
 Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di una mano a Black Jack
 
 
-## Regole di base
+## :small_red_triangle: Regole di base
  - Una volta che il giocatore ha effettuato la puntata, il dealer assegna a sé e al giocatore due carte. 
  -  Se un giocatore supera il 21 perde (*bust*). 
  - Se il giocatore fa 21 con le prime due carte assegnategli dal dealer, cioè riceve un asso (11) o una figura, forma il cosiddetto "black jack", e ha diritto al pagamento di 3 a 2.
  - Se il dealer realizza anche lui il black jack la mano è considerata alla pari (*draw*).
  - Una volta che il giocatore ha finito la sua mano (*stand*) , poiché non chiama più carte (*hit*), il dealer sviluppa il suo gioco seguendo la "regola del banco": deve tirare carta con un punteggio inferiore a 17. Una volta ottenuto o superato 17 si deve fermare. Se oltrepassa il 21 il banco "sballa". 
 
-## Logica (metodi principali)
+## :small_red_triangle: Logica (metodi principali)
 #### Mescolamento del mazzo
+***Parametri in ingresso:*** numero di mescolamenti
+Seleziona un elemento random del mazzo e lo colloca nella posizione designata (i). Ripete l'operazione ricorsivamente. 
 
     public void mixCards (int cicles) {  
 	    for (int i=0; i<this.cards.size(); i++) {  
@@ -29,6 +31,9 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	}
 
 #### Assegnazione carte
+***Parametri in ingresso:*** player
+Preleva la prima carta del mazzo e la aggiunge al mazzo del player. 
+
     public boolean getCard (Player player) {  
 	    if (this.cards.size() > 0 ) {  
 	        player.getPlayerCards().add(this.cards.get(0));  
@@ -39,6 +44,8 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	   }
 
 #### Puntata e doppio giro di carte
+***Parametri in ingresso:*** player, puntata
+Verifica che la puntata sia accettabile (controllo), poi assegna la puntata e distribuisce i primi due giri di carte al player e al dealer per mezzo del metodo *getCard*.
 
     public boolean betAndGetCards (Player player, double bet) {  
 	    if (bet > player.getCredit()) return false;  
@@ -54,6 +61,8 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	}
 
 #### Calcolo dello score
+***Parametri in ingresso:*** player
+Determina il punteggio del player, tenendo conto delle regole di base del gioco. 
 
     public int getScore (Player player) {  
 	    int score = 0;  
@@ -78,6 +87,8 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	}
 
 #### Verifica della condizione di vittoria
+***Parametri in ingresso:*** player
+Verifica quale delle condizioni espresse dalle regole di base si sia verificata a seguito del doppio giro di carte iniziale (per black jack), stand (vittoria, perdita, pareggio), di un hit (bound). 
 
     public int stand (Player player) {  
 	    int score = getScore(player), dealerScore = getScore(dealer);  
@@ -125,8 +136,9 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	    return -1;  
 	}
 
-## Interfaccia (metodi principali)
+## :small_red_triangle: Interfaccia (metodi principali)
 #### Reset
+Azzera l'ambiente di gioco, ricominciando di fatto una nuova partita.
 
     public void restart () {  
 	    game = new Game ();  
@@ -172,20 +184,26 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	}
 
 #### Conversione del valore (per figure e asso)
+Qualora trovasse un asso o una figura, consente di stampare a video le lettere corrispondenti, come segue: 
 
-    public StringProperty conversion (int card) {  
-	    String auxCardValue;  
-	    StringProperty cardValue;  
-	  
-	    if (card == 1) auxCardValue = "A";  
-	    else if (card == 11) auxCardValue = "J";  
-	    else if (card == 12) auxCardValue = "Q";  
-	    else if (card == 13) auxCardValue = "K";  
-	    else auxCardValue = Integer.toString(card);  
-	    cardValue = new SimpleStringProperty(auxCardValue);  
-	  
-	    return cardValue;  
-	}
+ - A (asso) = 1; 
+ - J (fante) = 11; 
+ - Q (regina) = 12; 
+ - K (re) = 13.
+
+		public StringProperty conversion (int card) {  
+		    String auxCardValue;  
+		    StringProperty cardValue;  
+		  
+		    if (card == 1) auxCardValue = "A";  
+		    else if (card == 11) auxCardValue = "J";  
+		    else if (card == 12) auxCardValue = "Q";  
+		    else if (card == 13) auxCardValue = "K";  
+		    else auxCardValue = Integer.toString(card);  
+		    cardValue = new SimpleStringProperty(auxCardValue);  
+		  
+		    return cardValue;  
+		}
 
 #### Assegnazione di una nuova carta (hit)
 

@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbox" layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="500.0" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<VBox fx:id="vbox" layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="500.0" spacing="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <Pane fx:id="table" maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #00802b;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
       <children>
          <Region layoutY="382.0" prefHeight="419.0" prefWidth="1200.0" style="-fx-background-color: #004d1a;" />
-         <Button fx:id="bet5" layoutX="839.0" layoutY="576.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 5" />
-         <Button fx:id="bet10" layoutX="917.0" layoutY="576.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 10" />
-         <Button fx:id="bet50" layoutX="996.0" layoutY="576.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 50" />
-         <Button fx:id="bet100" layoutX="839.0" layoutY="616.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 100" />
-         <Button fx:id="betallin" layoutX="917.0" layoutY="616.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #ff6666;" text="ALL IN" />
-         <Button fx:id="btnHit" layoutX="673.0" layoutY="709.0" mnemonicParsing="false" text="HIT" />
-         <Button fx:id="btnStand" layoutX="480.0" layoutY="709.0" mnemonicParsing="false" text="STAND" />
+         <Button fx:id="bet5" layoutX="839.0" layoutY="576.0" mnemonicParsing="false" onAction="#bet5" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 5" />
+         <Button fx:id="bet10" layoutX="917.0" layoutY="576.0" mnemonicParsing="false" onAction="#bet10" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 10" />
+         <Button fx:id="bet50" layoutX="996.0" layoutY="576.0" mnemonicParsing="false" onAction="#bet50" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 50" />
+         <Button fx:id="bet100" layoutX="839.0" layoutY="616.0" mnemonicParsing="false" onAction="#bet100" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #ff6666;" text="\$ 100" />
+         <Button fx:id="betallin" layoutX="917.0" layoutY="616.0" mnemonicParsing="false" onAction="#betAll" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #ff6666;" text="ALL IN" />
+         <Button fx:id="btnHit" layoutX="673.0" layoutY="709.0" mnemonicParsing="false" onAction="#hit" text="HIT" />
+         <Button layoutX="480.0" layoutY="709.0" mnemonicParsing="false" onAction="#stand" text="STAND" />
          <!--<Button fx:id="btnStart" onAction="#deal" layoutX="600.0" layoutY="400.0" mnemonicParsing="false" text="START" />-->
          <Label fx:id="lblCredit" layoutX="36.0" layoutY="717.0" prefHeight="35.0" prefWidth="97.0" text="CREDIT: " textFill="WHITE">
             <font>

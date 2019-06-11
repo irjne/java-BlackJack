@@ -254,7 +254,7 @@ public class Controller {
                 name = cardD6V;
                 seedName = cardD6S;
             }
-            
+
             seedName.setImage(setSeed(seed));
             name.textProperty().bind(cardValue);
         }
@@ -389,10 +389,6 @@ public class Controller {
     void stand() {
         game.dealerScore();
         int result = game.stand(player);
-
-        for (Card card : game.dealer.getPlayerCards()) {
-            System.out.println("Card: " + card.getNumber());
-        }
 
         if (game.dealer.getPlayerCards().size() > 2) dealerHitCards();
 

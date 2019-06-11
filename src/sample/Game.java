@@ -130,7 +130,7 @@ public class Game {
     }
 
     public int stand (Player player) {
-        int score = getScore(player), dealerScore = /*dealerScore()*/ getScore(dealer);
+        int score = getScore(player), dealerScore = getScore(dealer);
 
         if (score == dealerScore && score < 22) {
             player.setCredit(player.getCredit()+player.getBet());
@@ -184,12 +184,6 @@ public class Game {
         }
 
         return result + "]";
-
-        /*String result = "";
-        for (Card card : this.cards) {
-            result += card.getNumber() + " " + card.getSeed() + "\n";
-        }
-        return result;*/
     }
 
     //testing
@@ -212,8 +206,6 @@ public class Game {
                 switch (choice) {
                     case 1: {
                         game.stand(player);
-                        System.out.println(player);
-                        System.out.println(game);
                     }
                     break;
                     case 2: {

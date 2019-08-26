@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,220 +14,227 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbox" layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="500.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <Pane fx:id="table" maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #00802b;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-      <children>
-         <Region layoutY="382.0" prefHeight="419.0" prefWidth="1200.0" style="-fx-background-color: #004d1a;" />
-         <Region layoutX="-7.0" layoutY="696.0" prefHeight="104.0" prefWidth="1208.0" style="-fx-background-color: #6b9357;" />
-         <Button fx:id="bet5" layoutX="934.0" layoutY="711.0" mnemonicParsing="false" onAction="#bet5" prefHeight="25.0" prefWidth="50.0" text="\$ 5" />
-         <Button fx:id="bet10" layoutX="1021.0" layoutY="711.0" mnemonicParsing="false" onAction="#bet10" prefHeight="25.0" prefWidth="50.0" text="\$ 10" />
-         <Button fx:id="bet50" layoutX="1099.0" layoutY="711.0" mnemonicParsing="false" onAction="#bet50" prefHeight="25.0" prefWidth="50.0" text="\$ 50" />
-         <Button fx:id="bet100" layoutX="934.0" layoutY="754.0" mnemonicParsing="false" onAction="#bet100" prefHeight="25.0" prefWidth="50.0" text="\$ 100" />
-         <Button fx:id="betallin" layoutX="1021.0" layoutY="754.0" mnemonicParsing="false" onAction="#betAll" prefHeight="25.0" prefWidth="130.0" text="ALL IN" />
-         <Button fx:id="btnHit" layoutX="673.0" layoutY="736.0" mnemonicParsing="false" onAction="#hit" text="HIT" />
-         <Button layoutX="484.0" layoutY="736.0" mnemonicParsing="false" onAction="#stand" text="STAND" />
-         <Label fx:id="lblCredit" layoutX="24.0" layoutY="731.0" prefHeight="35.0" prefWidth="140.0" text="CREDIT: $ " textFill="WHITE">
-            <font>
-               <Font name="Verdana" size="24.0" />
-            </font>
-         </Label>
-         <Label fx:id="credit" layoutX="164.0" layoutY="731.0" prefHeight="35.0" prefWidth="97.0" textFill="WHITE">
-            <font>
-               <Font name="System Bold" size="24.0" />
-            </font>
-         </Label>
-         <Pane fx:id="cardD1" layoutX="458.0" layoutY="50.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;" visible="true">
-            <children>
-               <Label fx:id="cardD1V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardD1S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardD2" layoutX="497.0" layoutY="61.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardD2V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardD2S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardD3" layoutX="532.0" layoutY="79.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardD3V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardD3S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardD4" layoutX="568.0" layoutY="96.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardD4V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardD4S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardD5" layoutX="603.0" layoutY="113.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardD5V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardD5S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardD6" layoutX="637.0" layoutY="134.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardD6V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardD6S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardP1" layoutX="461.0" layoutY="429.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardP1V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardP1S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardP2" layoutX="500.0" layoutY="440.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardP2V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardP2S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardP3" layoutX="535.0" layoutY="458.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardP3V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardP3S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardP4" layoutX="571.0" layoutY="475.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardP4V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardP4S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardP5" layoutX="606.0" layoutY="492.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardP5V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardP5S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Pane fx:id="cardP6" layoutX="640.0" layoutY="513.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3px;">
-            <children>
-               <Label fx:id="cardP6V" layoutX="4.0" text="">
-                  <font>
-                     <Font name="System Bold" size="36.0" />
-                  </font>
-               </Label>
-               <ImageView fx:id="cardP6S" fitHeight="25.0" fitWidth="21.0" layoutX="4.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </Pane>
-         <Label fx:id="alert" alignment="CENTER" layoutX="456.0" layoutY="324.0" prefHeight="35.0" prefWidth="286.0" text="" textAlignment="CENTER" textFill="WHITE">
-            <font>
-               <Font name="System Bold" size="36.0" />
-            </font>
-         </Label>
-         <Label layoutX="24.0" layoutY="25.0" text="Dealer: " textFill="WHITE">
-            <font>
-               <Font name="Verdana" size="18.0" />
-            </font></Label>
-         <Label layoutX="24.0" layoutY="400.0" text="Player: " textFill="WHITE">
-            <font>
-               <Font name="Verdana" size="18.0" />
-            </font></Label>
-         <Label fx:id="dealerScore" layoutX="100.0" layoutY="23.0" text="0" textFill="WHITE">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </Label>
-         <Label fx:id="playerScore" layoutX="100.0" layoutY="398.0" text="0" textFill="WHITE">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </Label>
-         <Button layoutX="1123.0" layoutY="24.0" mnemonicParsing="false" onAction="#restart" text="Restart" />
-      </children>
-   </Pane>
+<VBox fx:id="vbox" layoutX="0.0" layoutY="0.0" prefHeight="500.0" prefWidth="500.0" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Pane fx:id="table" maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-size: 100%; -fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/play-table.jpg&quot;);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+            <Region layoutY="306.0" prefHeight="495.0" prefWidth="1200.0" style="-fx-background-color: #004d1a;" visible="false" />
+            <Region layoutX="-7.0" layoutY="696.0" prefHeight="104.0" prefWidth="1208.0" style="-fx-background-color: #6b9357;" visible="false" />
+            <Button fx:id="bet5" layoutX="50.0" layoutY="582.0" mnemonicParsing="false" onAction="#bet5" prefHeight="70.0" prefWidth="70.0" style="-fx-background-radius: 100; -fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/fiche-5.png&quot;); -fx-background-size: 70;" />
+            <Button fx:id="bet10" layoutX="162.0" layoutY="634.0" mnemonicParsing="false" onAction="#bet10" prefHeight="70.0" prefWidth="70.0" style="-fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/fiche-10.png&quot;); -fx-background-size: 70; -fx-background-radius: 100;" />
+            <Button fx:id="bet50" layoutX="959.0" layoutY="634.0" mnemonicParsing="false" onAction="#bet50" prefHeight="70.0" prefWidth="70.0" style="-fx-background-radius: 100; -fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/fiche-50.png&quot;); -fx-background-size: 70;" />
+            <Button fx:id="bet100" layoutX="1065.0" layoutY="582.0" mnemonicParsing="false" onAction="#bet100" prefHeight="70.0" prefWidth="70.0" style="-fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/fiche-100.png&quot;); -fx-background-size: 70; -fx-background-radius: 100;" />
+            <Button fx:id="betallin" layoutX="556.0" layoutY="697.0" mnemonicParsing="false" onAction="#betAll" prefHeight="30.0" prefWidth="100.0" style="-fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/org.png&quot;); -fx-background-color: #95530b; -fx-background-radius: 100; -fx-background-size: 100;" text="ALL IN">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="hit" layoutX="826.0" layoutY="729.0" mnemonicParsing="false" onAction="#hit" prefHeight="40.0" prefWidth="120.0" style="-fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/org.png&quot;); -fx-background-color: #95530b; -fx-background-size: 120; -fx-background-radius: 100;" text="HIT">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Button fx:id="stand" layoutX="256.0" layoutY="728.0" mnemonicParsing="false" onAction="#stand" prefHeight="40.0" prefWidth="120.0" style="-fx-background-radius: 100; -fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/org.png&quot;); -fx-background-size: 120; -fx-background-color: #95530b;" text="STAND">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Button>
+            <Label fx:id="credit" layoutX="521.0" layoutY="748.0" prefHeight="35.0" prefWidth="206.0" textAlignment="RIGHT" textFill="#b7e3f0">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane fx:id="cardD1" layoutX="464.0" layoutY="44.0" prefHeight="142.0" prefWidth="106.0" rotate="-20.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1px; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardD1V" layoutX="9.0" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardD1S" fitHeight="25.0" fitWidth="21.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardD2" layoutX="559.0" layoutY="28.0" prefHeight="142.0" prefWidth="106.0" rotate="5.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardD2V" layoutX="10.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardD2S" fitHeight="25.0" fitWidth="21.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardP1" layoutX="473.0" layoutY="396.0" prefHeight="142.0" prefWidth="106.0" rotate="-20.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardP1V" layoutX="9.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardP1S" fitHeight="25.0" fitWidth="21.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardP2" layoutX="551.0" layoutY="382.0" prefHeight="142.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardP2V" layoutX="10.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardP2S" fitHeight="25.0" fitWidth="21.0" layoutX="10.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardP3" layoutX="633.0" layoutY="396.0" prefHeight="142.0" prefWidth="106.0" rotate="20.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardP3V" layoutX="8.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardP3S" fitHeight="25.0" fitWidth="21.0" layoutX="8.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardP4" layoutX="498.0" layoutY="467.0" prefHeight="142.0" prefWidth="106.0" rotate="-30.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardP4V" layoutX="8.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardP4S" fitHeight="25.0" fitWidth="21.0" layoutX="8.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardP5" layoutX="549.0" layoutY="447.0" prefHeight="142.0" prefWidth="106.0" rotate="-10.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardP5V" layoutX="9.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardP5S" fitHeight="25.0" fitWidth="21.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardP6" layoutX="614.0" layoutY="467.0" prefHeight="142.0" prefWidth="106.0" rotate="25.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardP6V" layoutX="9.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardP6S" fitHeight="25.0" fitWidth="21.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label fx:id="dealerScore" layoutX="462.0" layoutY="316.0" rotate="15.0" text="0" textFill="#d0b58d">
+               <font>
+                  <Font name="Engravers MT" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="playerScore" layoutX="718.0" layoutY="317.0" rotate="-20.0" text="0" textFill="#d0b58d">
+               <font>
+                  <Font name="Engravers MT" size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="985.0" layoutY="24.0" mnemonicParsing="false" onAction="#newGame" prefHeight="80.0" prefWidth="80.0" style="-fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/round-button.png&quot;); -fx-background-size: 80; -fx-background-radius: 100;" text="NEW GAME" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Button>
+            <Button layoutX="1089.0" layoutY="24.0" mnemonicParsing="false" onAction="#restart" prefHeight="80.0" prefWidth="80.0" style="-fx-background-image: url(&quot;http://irjneishere.altervista.org/other/javafxproject/restart.png&quot;); -fx-background-size: 80; -fx-background-radius: 100;" />
+            <Label fx:id="alert" alignment="CENTER" layoutX="487.0" layoutY="319.0" prefHeight="30.0" prefWidth="220.0" textAlignment="CENTER" textFill="#adb601">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Pane fx:id="cardD3" layoutX="662.0" layoutY="44.0" prefHeight="142.0" prefWidth="106.0" rotate="25.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardD3V" layoutX="9.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardD3S" fitHeight="25.0" fitWidth="21.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardD4" layoutX="464.0" layoutY="115.0" prefHeight="142.0" prefWidth="106.0" rotate="-15.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardD4V" layoutX="8.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardD4S" fitHeight="25.0" fitWidth="21.0" layoutX="8.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardD5" layoutX="551.0" layoutY="103.0" prefHeight="142.0" prefWidth="106.0" rotate="19.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardD5V" layoutX="8.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardD5S" fitHeight="25.0" fitWidth="21.0" layoutX="8.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="cardD6" layoutX="654.0" layoutY="115.0" prefHeight="142.0" prefWidth="106.0" rotate="32.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-radius: 10;" visible="false">
+               <children>
+                  <Label fx:id="cardD6V" layoutX="7.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="cardD6S" fitHeight="25.0" fitWidth="21.0" layoutX="7.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://irjneishere.altervista.org/other/javafxproject/noSeed.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="32.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="http://irjneishere.altervista.org/other/javafxproject/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
 </VBox>

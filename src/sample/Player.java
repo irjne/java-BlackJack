@@ -22,6 +22,7 @@ public class Player {
     public double getBet() {return bet;}
     public void setBet(double bet) {this.bet = bet;}
 
+    public void setPlayerCards(ArrayList<Card> playerCards) {this.playerCards = playerCards;}
     public ArrayList<Card> getPlayerCards() {return playerCards;}
 
     @Override

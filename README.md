@@ -13,7 +13,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
  - Una volta che il giocatore ha finito la sua mano (*stand*) , poiché non chiama più carte (*hit*), il dealer sviluppa il suo gioco seguendo la "regola del banco": deve tirare carta con un punteggio inferiore a 17. Una volta ottenuto o superato 17 si deve fermare. Se oltrepassa il 21 il banco "sballa". 
 
 ## :small_red_triangle: Logica (metodi principali)
-#### Mescolamento del mazzo
+#### 🔹 Mescolamento del mazzo
 ***Parametri in ingresso:*** numero di mescolamenti
 <br>Seleziona un elemento random del mazzo e lo colloca nella posizione designata (i). Ripete l'operazione ricorsivamente. 
 
@@ -30,7 +30,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	    if (cicles>0) mixCards(cicles-1);  
 	}
 
-#### Assegnazione carte
+#### 🔹 Assegnazione carte
 ***Parametri in ingresso:*** player
 <br>Preleva la prima carta del mazzo e la aggiunge al mazzo del player. 
 
@@ -43,7 +43,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	    return false;  
 	   }
 
-#### Puntata e doppio giro di carte
+#### 🔹 Puntata e doppio giro di carte
 ***Parametri in ingresso:*** player, puntata
 <br>Verifica che la puntata sia accettabile (controllo), poi assegna la puntata e distribuisce i primi due giri di carte al player e al dealer per mezzo del metodo *getCard*.
 
@@ -60,7 +60,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	    return true;  
 	}
 
-#### Calcolo dello score
+#### 🔹 Calcolo dello score
 ***Parametri in ingresso:*** player
 <br>Determina il punteggio del player, tenendo conto delle regole di base del gioco. 
 
@@ -86,7 +86,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
         return score;
     }
 
-#### Verifica della condizione di vittoria
+#### 🔹 Verifica della condizione di vittoria
 ***Parametri in ingresso:*** player
 <br>Verifica quale delle condizioni espresse dalle regole di base si sia verificata a seguito del doppio giro di carte iniziale (per black jack), stand (vittoria, perdita, pareggio), di un hit (bound). 
 
@@ -135,7 +135,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
     }
 
 ## :small_red_triangle: Interfaccia (metodi principali)
-#### New Game
+#### 🔹 New Game
 Consente di iniziare una nuova partita, azzerando ogni score e guadagno ricevuto in precedenza.
 
     public void newGame () {
@@ -176,7 +176,7 @@ Consente di iniziare una nuova partita, azzerando ogni score e guadagno ricevuto
     }
 
 
-#### Reset
+#### 🔹 Reset
 Azzera l'ambiente di gioco, ricominciando di fatto un nuovo match.
 
     public void restart () {
@@ -215,7 +215,7 @@ Azzera l'ambiente di gioco, ricominciando di fatto un nuovo match.
         cardP6.setVisible(false);
     }
 
-#### Conversione del valore (per figure e asso)
+#### 🔹 Conversione del valore (per figure e asso)
 Qualora trovasse un asso o una figura, consente di stampare a video le lettere corrispondenti, come segue: 
 
  - A (asso) = 1; 
@@ -237,7 +237,7 @@ Qualora trovasse un asso o una figura, consente di stampare a video le lettere c
 		    return cardValue;  
 		}
 
-#### Assegnazione di una nuova carta (hit)
+#### 🔹 Assegnazione di una nuova carta (hit)
 
     public void newCard () {  
 	    Label name;  
@@ -271,7 +271,7 @@ Qualora trovasse un asso o una figura, consente di stampare a video le lettere c
 	    name.textProperty().bind(cardValue);  
 	}
 
-#### Action: puntata
+#### 🔹 Action: puntata
 Disponibili cinque tipologie di puntate. Scelta la propria, le altre vengono rese non disponibili. 
 
     void bet5() {
@@ -300,7 +300,7 @@ Disponibili cinque tipologie di puntate. Scelta la propria, le altre vengono res
         initialize();
     }
 
-#### Verifica della condizione di vittoria
+#### 🔹 Verifica della condizione di vittoria
 
     void hit() {
         int result = game.hit(player);

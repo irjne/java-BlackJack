@@ -7,15 +7,15 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 
 ## :small_red_triangle: Regole di base
  - Una volta che il giocatore ha effettuato la puntata, il dealer assegna a sé e al giocatore due carte. 
- -  Se un giocatore supera il 21 perde (*bust*). 
+ -  Se un giocatore supera il 21, perde (*bust*). 
  - Se il giocatore fa 21 con le prime due carte assegnategli dal dealer, cioè riceve un asso (11) o una figura, forma il cosiddetto "black jack", e ha diritto al pagamento di 3 a 2.
- - Se il dealer realizza anche lui il black jack la mano è considerata alla pari (*draw*).
+ - Se il dealer realizza a sua volta il black jack, la mano è considerata alla pari (*draw*).
  - Una volta che il giocatore ha finito la sua mano (*stand*) , poiché non chiama più carte (*hit*), il dealer sviluppa il suo gioco seguendo la "regola del banco": deve tirare carta con un punteggio inferiore a 17. Una volta ottenuto o superato 17 si deve fermare. Se oltrepassa il 21 il banco "sballa". 
 
 ## :small_red_triangle: Logica (metodi principali)
 #### Mescolamento del mazzo
 ***Parametri in ingresso:*** numero di mescolamenti
-Seleziona un elemento random del mazzo e lo colloca nella posizione designata (i). Ripete l'operazione ricorsivamente. 
+<br>Seleziona un elemento random del mazzo e lo colloca nella posizione designata (i). Ripete l'operazione ricorsivamente. 
 
     public void mixCards (int cicles) {  
 	    for (int i=0; i<this.cards.size(); i++) {  
@@ -32,7 +32,7 @@ Seleziona un elemento random del mazzo e lo colloca nella posizione designata (i
 
 #### Assegnazione carte
 ***Parametri in ingresso:*** player
-Preleva la prima carta del mazzo e la aggiunge al mazzo del player. 
+<br>Preleva la prima carta del mazzo e la aggiunge al mazzo del player. 
 
     public boolean getCard (Player player) {  
 	    if (this.cards.size() > 0 ) {  
@@ -45,7 +45,7 @@ Preleva la prima carta del mazzo e la aggiunge al mazzo del player.
 
 #### Puntata e doppio giro di carte
 ***Parametri in ingresso:*** player, puntata
-Verifica che la puntata sia accettabile (controllo), poi assegna la puntata e distribuisce i primi due giri di carte al player e al dealer per mezzo del metodo *getCard*.
+<br>Verifica che la puntata sia accettabile (controllo), poi assegna la puntata e distribuisce i primi due giri di carte al player e al dealer per mezzo del metodo *getCard*.
 
     public boolean betAndGetCards (Player player, double bet) {  
 	    if (bet > player.getCredit()) return false;  
@@ -62,129 +62,161 @@ Verifica che la puntata sia accettabile (controllo), poi assegna la puntata e di
 
 #### Calcolo dello score
 ***Parametri in ingresso:*** player
-Determina il punteggio del player, tenendo conto delle regole di base del gioco. 
+<br>Determina il punteggio del player, tenendo conto delle regole di base del gioco. 
 
-    public int getScore (Player player) {  
-	    int score = 0;  
-	    boolean ace = false;  
-	    boolean figure = false;  
-	  
-	    for (Card card : player.getPlayerCards()) {  
-	        if (card.getNumber() > 10) {  
-	            score+=10;  
-	            figure = true;  
-	        }  
-	        else if (card.getNumber() == 1) {  
-	            ace = true;  
-	            score+=1;  
-	        }  
-	        else score+=card.getNumber();  
-	    }  
-	  
-	    if (player.getPlayerCards().size() == 2 && ace && (figure || score > 5)) score+=10;  
-	  
-	    return score;  
-	}
+    public int getScore (Player player) {
+        int score = 0;
+        boolean isAce = false;
+        boolean isFigure = false;
+
+        for (Card card : player.getPlayerCards()) {
+            if (card.getNumber() > 10) {
+                score+=10;
+                isFigure = true;
+            }
+            else if (card.getNumber() == 1) {
+                isAce = true;
+                score+=1;
+            }
+            else score+=card.getNumber();
+        }
+
+        if (player.getPlayerCards().size() == 2 && isAce && (isFigure || score > 5)) score+=10;
+
+        return score;
+    }
 
 #### Verifica della condizione di vittoria
 ***Parametri in ingresso:*** player
-Verifica quale delle condizioni espresse dalle regole di base si sia verificata a seguito del doppio giro di carte iniziale (per black jack), stand (vittoria, perdita, pareggio), di un hit (bound). 
+<br>Verifica quale delle condizioni espresse dalle regole di base si sia verificata a seguito del doppio giro di carte iniziale (per black jack), stand (vittoria, perdita, pareggio), di un hit (bound). 
 
-    public int stand (Player player) {  
-	    int score = getScore(player), dealerScore = getScore(dealer);  
-	  
-	    if (score == dealerScore && score < 22) {  
-	        player.setCredit(player.getCredit()+player.getBet());  
-	        System.out.println("DRAW.");  
-	        return 0;  
-	    }  
-	  
-	    else if ((score < 22 && score > dealerScore) || dealerScore > 21) {  
-	        player.setCredit(player.getCredit()+player.getBet()*2);  
-	        System.out.println("WIN.");  
-	        return 1;  
-	    }  
-	  
-	    else if ((score < 22 && score < dealerScore) || dealerScore == 21) {  
-	        System.out.println("LOSE.");  
-	        return 2;  
-	    }  
-	    return -1;  
-	}  
-	  
-	public int hit (Player player) {  
-	    if (bustOrBlackJack(player) == 2) {  
-	        getCard(player);  
-	  
-	        if (bustOrBlackJack(player) == 0) return 3;  
-	    }  
-	    return -1;  
-	}  
-	  
-	public int blackJackOrDraw (Player player) {  
-	    if (bustOrBlackJack(player) == 1 && getScore(getDealer()) < 21) {  
-	        player.setCredit(player.getCredit()+player.getBet()+(player.getBet()*1.5));  
-	        System.out.println("BLACK JACK.");  
-	        return 4;  
-	    }  
-	  
-	    if (bustOrBlackJack(player) == 1 && getScore(getDealer()) == 21) {  
-	        player.setCredit(player.getCredit()+player.getBet());  
-	        System.out.println("DRAW.");  
-	        return 0;  
-	    }  
-	    return -1;  
-	}
+    public int stand (Player player) {
+        int score = getScore(player), dealerScore = getScore(dealer);
+
+        if (score == dealerScore && score < 22) {
+            // draw
+            player.setCredit(player.getCredit()+player.getBet());
+            return 0;
+        }
+
+        else if ((score < 22 && score > dealerScore) || dealerScore > 21) {
+            //win
+            player.setCredit(player.getCredit()+player.getBet()*2);
+            return 1;
+        }
+
+        else if ((score < 22 && score < dealerScore) || dealerScore == 21) {
+            //lose
+            return 2;
+        }
+        return -1;
+    }
+
+    public int hit (Player player) {
+        if (bustOrBlackJack(player) == 2) {
+            getCard(player);
+
+            if (bustOrBlackJack(player) == 0) return 3;
+        }
+        return -1;
+    }
+
+    public int blackJackOrDraw (Player player) {
+        if (bustOrBlackJack(player) == 1 && getScore(getDealer()) < 21) {
+            player.setCredit(player.getCredit()+player.getBet()+(player.getBet()*1.5));
+            return 4;
+        }
+
+        if (bustOrBlackJack(player) == 1 && getScore(getDealer()) == 21) {
+            player.setCredit(player.getCredit()+player.getBet());
+            return 0;
+        }
+        return -1;
+    }
 
 ## :small_red_triangle: Interfaccia (metodi principali)
-#### Reset
-Azzera l'ambiente di gioco, ricominciando di fatto una nuova partita.
+#### New Game
+<br>Consente di iniziare una nuova partita, azzerando ogni score e guadagno ricevuto in precedenza.
 
-    public void restart () {  
-	    game = new Game ();  
-	    game.dealer = new Player();  
-	    player = new Player(300);  
-	  
-	    StringProperty valueZero = new SimpleStringProperty("0");  
-	    StringProperty stringNull = new SimpleStringProperty();  
-	  
-	    credit.textProperty().bind(new SimpleStringProperty(Double.toString(player.getCredit())));  
-	    playerScore.textProperty().bind(valueZero);  
-	    dealerScore.textProperty().bind(valueZero);  
-	  
-	    cardD1V.textProperty().bind(stringNull);  
-	    cardD2V.textProperty().bind(stringNull);  
-	    cardD3V.textProperty().bind(stringNull);  
-	    cardD4V.textProperty().bind(stringNull);  
-	    cardD5V.textProperty().bind(stringNull);  
-	    cardD6V.textProperty().bind(stringNull);  
-	  
-	    cardP1V.textProperty().bind(stringNull);  
-	    cardP2V.textProperty().bind(stringNull);  
-	    cardP3V.textProperty().bind(stringNull);  
-	    cardP4V.textProperty().bind(stringNull);  
-	    cardP5V.textProperty().bind(stringNull);  
-	    cardP6V.textProperty().bind(stringNull);  
-	  
-	    alert.textProperty().bind(stringNull);  
-	  
-	    cardD1S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardD2S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardD3S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardD4S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardD5S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardD6S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	  
-	    cardP1S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardP2S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardP3S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardP4S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardP5S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	    cardP6S.setImage(new Image("http://irjneishere.altervista.org/other/javafxproject/noSeed.png"));  
-	}
+    public void newGame () {
+        bet5.setDisable(false);
+        bet10.setDisable(false);
+        bet50.setDisable(false);
+        bet100.setDisable(false);
+        betallin.setDisable(false);
+        hit.setDisable(false);
+        stand.setDisable(false);
+
+        game = new Game ();
+        game.dealer = new Player();
+        player = new Player(300);
+
+        StringProperty valueZero = new SimpleStringProperty("0");
+        StringProperty stringNull = new SimpleStringProperty();
+
+        credit.textProperty().bind(new SimpleStringProperty(Double.toString(player.getCredit())));
+        playerScore.textProperty().bind(valueZero);
+        dealerScore.textProperty().bind(valueZero);
+
+        alert.textProperty().bind(stringNull);
+
+        cardD1.setVisible(false);
+        cardD2.setVisible(false);
+        cardD3.setVisible(false);
+        cardD4.setVisible(false);
+        cardD5.setVisible(false);
+        cardD6.setVisible(false);
+
+        cardP1.setVisible(false);
+        cardP2.setVisible(false);
+        cardP3.setVisible(false);
+        cardP4.setVisible(false);
+        cardP5.setVisible(false);
+        cardP6.setVisible(false);
+    }
+
+
+#### Reset
+<br>Azzera l'ambiente di gioco, ricominciando di fatto un nuovo match.
+
+    public void restart () {
+        bet5.setDisable(false);
+        bet10.setDisable(false);
+        bet50.setDisable(false);
+        bet100.setDisable(false);
+        betallin.setDisable(false);
+        hit.setDisable(false);
+        stand.setDisable(false);
+
+        game.dealer = new Player();
+        player.setPlayerCards(new ArrayList<Card>());
+
+        StringProperty valueZero = new SimpleStringProperty("0");
+        StringProperty stringNull = new SimpleStringProperty();
+
+        credit.textProperty().bind(new SimpleStringProperty(Double.toString(player.getCredit())));
+        playerScore.textProperty().bind(valueZero);
+        dealerScore.textProperty().bind(valueZero);
+
+        alert.textProperty().bind(stringNull);
+
+        cardD1.setVisible(false);
+        cardD2.setVisible(false);
+        cardD3.setVisible(false);
+        cardD4.setVisible(false);
+        cardD5.setVisible(false);
+        cardD6.setVisible(false);
+
+        cardP1.setVisible(false);
+        cardP2.setVisible(false);
+        cardP3.setVisible(false);
+        cardP4.setVisible(false);
+        cardP5.setVisible(false);
+        cardP6.setVisible(false);
+    }
 
 #### Conversione del valore (per figure e asso)
-Qualora trovasse un asso o una figura, consente di stampare a video le lettere corrispondenti, come segue: 
+<br>Qualora trovasse un asso o una figura, consente di stampare a video le lettere corrispondenti, come segue: 
 
  - A (asso) = 1; 
  - J (fante) = 11; 
@@ -240,43 +272,73 @@ Qualora trovasse un asso o una figura, consente di stampare a video le lettere c
 	}
 
 #### Action: puntata
+<br> Disponibili cinque tipologie di puntate. Scelta la propria, le altre vengono rese non disponibili. 
 
-    void bet5() {  
-	    game.mixCards(10);  
-	    game.betAndGetCards(player, 5);  
-	    initialize();  
-	  
-	    initialCards(game.dealer, 0);  
-	    initialCards(player, 1);  
-	  
-	    refreshScore();  
-	  
-	    int result = game.blackJackOrDraw(player);  
-	    alert(result);  
-	    initialize();  
-	}
+    void bet5() {
+        bet5.setDisable(true);
+        bet10.setDisable(true);
+        bet50.setDisable(true);
+        bet100.setDisable(true);
+        betallin.setDisable(true);
+
+        if (game.getCards().size() == 52) game.mixCards(10);
+        if (game.getCards().size() == 0) {
+            game.setCards(game1.getCards());
+            game.mixCards(10);
+        }
+
+        game.betAndGetCards(player, 5);
+        initialize();
+
+        initialCards(game.dealer, 0);
+        initialCards(player, 1);
+
+        refreshScore();
+
+        int result = game.blackJackOrDraw(player);
+        alert(result);
+        initialize();
+    }
 
 #### Verifica della condizione di vittoria
 
-    void hit() {  
-	    int result = game.hit(player);  
-	  
-	    newCard();  
-	    refreshScore();  
-	  
-	    alert(result);  
-	    initialize();  
-	}  
-	  
+    void hit() {
+        int result = game.hit(player);
 
-	void stand() {  
-	    game.dealerScore();  
-	    int result = game.stand(player);  
-	  
-	    if (game.dealer.getPlayerCards().size() > 2) dealerHitCards();  
-	  
-	    refreshScore();  
-	  
-	    alert(result);  
-	    initialize();  
-	}
+        if (game.getCards().size() == 0) {
+            game.setCards(game1.getCards());
+            game.mixCards(10);
+        }
+
+        newCard();
+        refreshScore();
+
+        alert(result);
+        if (result!= -1) {
+            hit.setDisable(true);
+            stand.setDisable(true);
+        }
+
+        initialize();
+    }
+
+    void stand() {
+        game.dealerScore();
+        int result = game.stand(player);
+
+        if (game.getCards().size() == 0) {
+            game.setCards(game1.getCards());
+            game.mixCards(10);
+        }
+
+        if (game.dealer.getPlayerCards().size() > 2) dealerHitCards();
+
+        refreshScore();
+
+        alert(result);
+        if (result!= -1) {
+            hit.setDisable(true);
+            stand.setDisable(true);
+        }
+        initialize();
+    }

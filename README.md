@@ -136,7 +136,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 
 ## :small_red_triangle: Interfaccia (metodi principali)
 #### New Game
-<br>Consente di iniziare una nuova partita, azzerando ogni score e guadagno ricevuto in precedenza.
+Consente di iniziare una nuova partita, azzerando ogni score e guadagno ricevuto in precedenza.
 
     public void newGame () {
         bet5.setDisable(false);
@@ -177,7 +177,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 
 
 #### Reset
-<br>Azzera l'ambiente di gioco, ricominciando di fatto un nuovo match.
+Azzera l'ambiente di gioco, ricominciando di fatto un nuovo match.
 
     public void restart () {
         bet5.setDisable(false);
@@ -216,7 +216,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
     }
 
 #### Conversione del valore (per figure e asso)
-<br>Qualora trovasse un asso o una figura, consente di stampare a video le lettere corrispondenti, come segue: 
+Qualora trovasse un asso o una figura, consente di stampare a video le lettere corrispondenti, come segue: 
 
  - A (asso) = 1; 
  - J (fante) = 11; 
@@ -272,7 +272,7 @@ Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di u
 	}
 
 #### Action: puntata
-<br> Disponibili cinque tipologie di puntate. Scelta la propria, le altre vengono rese non disponibili. 
+Disponibili cinque tipologie di puntate. Scelta la propria, le altre vengono rese non disponibili. 
 
     void bet5() {
         bet5.setDisable(true);

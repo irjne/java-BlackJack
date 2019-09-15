@@ -1,9 +1,9 @@
 # :black_joker: Black Jack
 Progetto a cura di *Daria Gilletti* (**@irjne**), *Claudio Landolfo* (**@clacchisi**), *Pierpaolo Pistorio* (**@Zelos23**)
 
-
 Implementazione di un'applicazione grafica in JavaFx che simuli l'andamento di una mano a Black Jack
 
+![Before and After GUI](http://irjneishere.altervista.org/other/javafxproject/Before-After.jpg)
 
 ## :small_red_triangle: Regole di base
  - Una volta che il giocatore ha effettuato la puntata, il dealer assegna a sé e al giocatore due carte. 
